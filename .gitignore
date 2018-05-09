@@ -1,0 +1,9 @@
+
+Library/
+ProjectSettings/
+Temp/
+*.pdf
+3_TH_CU2 Download Files/WM2000 Package.unitypackage
+*.sln
+*.csproj
+Packages/manifest.json
