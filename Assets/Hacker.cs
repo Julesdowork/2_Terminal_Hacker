@@ -6,9 +6,11 @@ public class Hacker : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //print("Hello Console");
-        //Terminal.WriteLine("Hello Terminal");
+        ShowMainMenu();
+    }
 
+    void ShowMainMenu () {
+        Terminal.ClearScreen();
         Terminal.WriteLine("Linucks HackerShell\n");
         Terminal.WriteLine("Choose a target to hack into:\n");
         Terminal.WriteLine("Press 1 for Server County Library");
