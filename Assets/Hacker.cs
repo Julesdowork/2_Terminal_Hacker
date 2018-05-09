@@ -19,9 +19,8 @@ public class Hacker : MonoBehaviour {
         Terminal.WriteLine("Press 3 for the NSA\n");
         Terminal.WriteLine("HS C:\\Users\\" + aName + ">");
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    void OnUserInput (string input) {
+        print("The user typed: " + input);
+    }
 }
