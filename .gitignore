@@ -7,3 +7,6 @@ Temp/
 *.sln
 *.csproj
 Packages/manifest.json
+.vs/
+images/
+obj/

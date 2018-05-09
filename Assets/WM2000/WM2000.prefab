@@ -70,6 +70,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4027389112089032}
+  - component: {fileID: 114601370101774230}
   m_Layer: 0
   m_Name: WM2000
   m_TagString: Untagged
@@ -476,6 +477,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd2a59f5ce36bce4d9b6c707148530fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114601370101774230
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1744407292189834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50487628e3df61345bf06ab160cc3fab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114605418127070900
