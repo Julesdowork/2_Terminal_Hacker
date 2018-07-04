@@ -8,6 +8,8 @@ public class Hacker : MonoBehaviour {
     // Game state
     int level;
     private string name;
+    enum Screen { MainMenu, Password, Win };
+    Screen currentScreen = Screen.MainMenu;
 
     // Use this for initialization
 	void Start ()
@@ -81,7 +83,7 @@ public class Hacker : MonoBehaviour {
     {
         if (level == 1)
         {
-            Terminal.WriteLine("Infiltrating the Server County Library... ");
+            Terminal.WriteLine("Infiltrating the Server County Library...");
         }
         else if (level == 2)
         {
@@ -91,5 +93,7 @@ public class Hacker : MonoBehaviour {
         {
             Terminal.WriteLine("Infiltrating the NSA...");
         }
+        currentScreen = Screen.Password;
+        Terminal.WriteLine("Please enter your password:");
     }
 }
