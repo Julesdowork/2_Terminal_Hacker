@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
@@ -94,16 +91,17 @@ public class Hacker : MonoBehaviour {
     {
         currentScreen = Screen.Password;
         Terminal.ClearScreen();
+        int index;
         switch (level)
         {
             case 1: Terminal.WriteLine("Infiltrating the Server County Library...");
-                password = level1Passwords[2];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
                 break;
             case 2: Terminal.WriteLine("Infiltrating Dells Largo Bank...");
-                password = level2Passwords[0];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
                 break;
             case 3: Terminal.WriteLine("Infiltrating the NSA...");
-                password = level3Passwords[4];
+                password = level3Passwords[Random.Range(0, level3Passwords.Length)];
                 break;
             default: Debug.LogError("Invalid level number");
                 break;
