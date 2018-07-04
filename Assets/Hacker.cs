@@ -121,7 +121,7 @@ public class Hacker : MonoBehaviour {
     void AskForPassword()
     {
         currentScreen = Screen.Password;
-        Terminal.WriteLine("Enter your password, hint: " + password.Anagram());
+        Terminal.WriteLine("Enter your guess, hint: " + password.Anagram());
         if (level == 3)
         {
             Terminal.WriteLine("(" + extraHint + ")");
@@ -156,6 +156,7 @@ public class Hacker : MonoBehaviour {
                 Debug.LogError("Invalid level number");
                 break;
         }
+        Terminal.WriteLine("What's the password?\n");
         AskForPassword();
     }
 
@@ -184,6 +185,7 @@ public class Hacker : MonoBehaviour {
                     case 3: score -= 500;
                         break;
                 }
+                Terminal.ClearScreen();
                 Terminal.WriteLine("Sorry, you have " + attempts + " guess(es) remaining");
                 AskForPassword();
             }
@@ -203,45 +205,15 @@ public class Hacker : MonoBehaviour {
         switch (level)
         {
             case 1: Terminal.WriteLine("What overdue book? ;)");
-                Terminal.WriteLine(@"
-     _________
-    /       //
-   /       //
-  /______ //
- (_______(/
-"
-                );
                 break;
             case 2: Terminal.WriteLine("Take as much as you like! >:D");
-                Terminal.WriteLine(@"
- ---------------------
- | |=====   |======  |
- | |     \  ||       |
- | |      ) |=====   |
- | |     /  ||       |
- | |=====   ||       |
- ---------------------
-"
-                );
                 break;
             case 3: Terminal.WriteLine("Plunge into the deep state!! :O");
-                Terminal.WriteLine(@"
-         _
-   nnn  < \    nnn
-  |  /__/  \__/   |
-  |    =======    |
-  |    \     /    |
-   \    \___/    /
-    \  /|| ||\  /  ____
-	 \/ || || \/  (    )
- ================(      )
- ||  ||           (____)
-"
-                );
                 break;
             default: Debug.LogError("Invalid level number");
                 break;
         }
+        Terminal.WriteLine("\nGreat job! You score is now: " + score);
     }
 
     void DisplayLoseScreen()

@@ -10,3 +10,4 @@ Packages/manifest.json
 .vs/
 images/
 obj/
+*.meta
