@@ -10,10 +10,12 @@ public class Hacker : MonoBehaviour {
 
     // Game state
     int level;
+    int score = 0;
+    int attempts;
     string username;
     string password;
     string extraHint;    // only for Level 3
-    enum Screen { Startup, MainMenu, Password, Win };
+    enum Screen { Startup, MainMenu, Password, Win, Lose };
     Screen currentScreen = Screen.Startup;
 
     public TextAsset level1PasswordFile;
@@ -23,14 +25,13 @@ public class Hacker : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        // Get words from text files and make each line an element
         level1Passwords = level1PasswordFile.text.Split('\n');
         level2Passwords = level2PasswordFile.text.Split('\n');
         level3Passwords = level3PasswordFile.text.Split('\n');
-        foreach (string line in level3Passwords)
 
         username = "";
         Terminal.WriteLine("Please enter your username:");
-        print(level3Passwords[0]);
     }
     
     void OnUserInput (string input)
@@ -55,9 +56,13 @@ public class Hacker : MonoBehaviour {
                 checkPassword(input);
             }
         }
-        else
+        else if (currentScreen == Screen.Win || currentScreen == Screen.Lose)
         {
-            if (input == "menu")
+            if (input == "Y" || input == "y")
+            {
+                SetRandomPassword();
+            }
+            else if (input == "N" || input == "n")
             {
                 ShowMainMenu();
             }
@@ -68,7 +73,7 @@ public class Hacker : MonoBehaviour {
     {
         currentScreen = Screen.MainMenu;
         Terminal.ClearScreen();
-        Terminal.WriteLine("Hello " + username);
+        Terminal.WriteLine("Hello " + username + " (Score: " + score + ")");
         Terminal.WriteLine("Choose a target to hack into:\n");
         Terminal.WriteLine("Press 1 for Server County Library");
         Terminal.WriteLine("Press 2 for Dells Largo Bank");
@@ -82,7 +87,7 @@ public class Hacker : MonoBehaviour {
         if (isValidLevelNumber)
         {
             level = int.Parse(input);
-            AskForPassword();
+            SetRandomPassword();
         }
         else if (input == "tahiti")
         {
@@ -116,8 +121,6 @@ public class Hacker : MonoBehaviour {
     void AskForPassword()
     {
         currentScreen = Screen.Password;
-        Terminal.ClearScreen();
-        SetRandomPassword();
         Terminal.WriteLine("Enter your password, hint: " + password.Anagram());
         if (level == 3)
         {
@@ -128,38 +131,62 @@ public class Hacker : MonoBehaviour {
 
     void SetRandomPassword()
     {
+        Terminal.ClearScreen();
         switch (level)
         {
             case 1:
                 Terminal.WriteLine("Infiltrating the Server County Library...");
-                password = level1Passwords[Random.Range(0, level1Passwords.Length)];
+                password = level1Passwords[Random.Range(0, level1Passwords.Length)].TrimEnd();
+                attempts = 3;
                 break;
             case 2:
                 Terminal.WriteLine("Infiltrating Dells Largo Bank...");
-                password = level2Passwords[Random.Range(0, level2Passwords.Length)];
+                password = level2Passwords[Random.Range(0, level2Passwords.Length)].TrimEnd();
+                attempts = 5;
                 break;
             case 3:
                 Terminal.WriteLine("Infiltrating the NSA...");
+                // split the line in two by the '-'
                 string[] line = level3Passwords[Random.Range(0, level3Passwords.Length)].Split('-');
                 password = line[0];
                 extraHint = line[1];
+                attempts = 7;
                 break;
             default:
                 Debug.LogError("Invalid level number");
                 break;
         }
+        AskForPassword();
     }
 
     void checkPassword(string input)
     {
         if (input == password)
         {
+            score += 100 * attempts;
             DisplayWinScreen();
-            Terminal.WriteLine(menuHint);
         }
         else
         {
-            AskForPassword();
+            attempts--;
+            if (attempts <= 0)
+            {
+                DisplayLoseScreen();
+            }
+            else
+            {
+                switch (level)
+                {
+                    case 1: score -= 50;
+                        break;
+                    case 2: score -= 150;
+                        break;
+                    case 3: score -= 500;
+                        break;
+                }
+                Terminal.WriteLine("Sorry, you have " + attempts + " guess(es) remaining");
+                AskForPassword();
+            }
         }
     }
 
@@ -168,6 +195,7 @@ public class Hacker : MonoBehaviour {
         currentScreen = Screen.Win;
         Terminal.ClearScreen();
         ShowLevelReward();
+        Terminal.WriteLine("Play Again? (Y/N)");
     }
 
     void ShowLevelReward()
@@ -214,5 +242,14 @@ public class Hacker : MonoBehaviour {
             default: Debug.LogError("Invalid level number");
                 break;
         }
+    }
+
+    void DisplayLoseScreen()
+    {
+        currentScreen = Screen.Lose;
+        Terminal.ClearScreen();
+        Terminal.WriteLine("The password was " + password);
+        Terminal.WriteLine("Sorry, you've been locked out.");
+        Terminal.WriteLine("Play Again? (Y/N)");
     }
 }

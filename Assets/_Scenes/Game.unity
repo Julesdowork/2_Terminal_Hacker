@@ -225,6 +225,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114601370101774230, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 2}
+      propertyPath: level1PasswordFile
+      value: 
+      objectReference: {fileID: 4900000, guid: ba8c6137331e1ab49a4150446fa06e67, type: 3}
+    - target: {fileID: 114601370101774230, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 2}
+      propertyPath: level2PasswordFile
+      value: 
+      objectReference: {fileID: 4900000, guid: d82f9b624bba8024e907fb76a2f844ea, type: 3}
+    - target: {fileID: 114601370101774230, guid: c46548f7b668a78409fa399c095e4e6b,
+        type: 2}
+      propertyPath: level3PasswordFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 968e2f26050b5dd41bfec8701c4a619f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c46548f7b668a78409fa399c095e4e6b, type: 2}
   m_IsPrefabParent: 0
