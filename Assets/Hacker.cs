@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
+    // Game configuration data
+    string[] level1Passwords = { "age", "bloom", "cradle", "dentist", "edge" };
+    string[] level2Passwords = { "flair", "gullible", "humane", "incense", "jurisdiction" };
+    string[] level3Passwords = { "labyrinthine", "melodramatic", "notoriety", "ominous", "pulchritude" };
+
     // Game state
     int level;
     string username;
@@ -103,17 +108,17 @@ public class Hacker : MonoBehaviour {
         if (level == 1)
         {
             Terminal.WriteLine("Infiltrating the Server County Library...");
-            password = "pilot";
+            password = level1Passwords[2];
         }
         else if (level == 2)
         {
             Terminal.WriteLine("Infiltrating Dells Largo Bank...");
-            password = "lucrative";
+            password = level2Passwords[0];
         }
         else
         {
             Terminal.WriteLine("Infiltrating the NSA...");
-            password = "retribution";
+            password = level3Passwords[4];
         }
         currentScreen = Screen.Password;
         Terminal.WriteLine("Please enter your password:");
