@@ -8,14 +8,46 @@ public class Hacker : MonoBehaviour {
     // Game state
     int level;
     private string name;
-    enum Screen { MainMenu, Password, Win };
-    Screen currentScreen = Screen.MainMenu;
+    enum Screen { Startup, MainMenu, Password, Win };
+    Screen currentScreen = Screen.Startup;
 
     // Use this for initialization
 	void Start ()
     {
-        name = "Jules";
-        ShowMainMenu();
+        name = "";
+        Terminal.WriteLine("Please enter your username:");
+    }
+    
+    void OnUserInput (string input)
+    {
+        if (currentScreen == Screen.Startup)
+        {
+            name = input;
+            currentScreen = Screen.MainMenu;
+            ShowMainMenu();
+        }
+        else if (currentScreen == Screen.MainMenu)
+        {
+            RunMainMenu(input);
+        }
+    }
+
+    void StartGame()
+    {
+        if (level == 1)
+        {
+            Terminal.WriteLine("Infiltrating the Server County Library...");
+        }
+        else if (level == 2)
+        {
+            Terminal.WriteLine("Infiltrating Dells Largo Bank...");
+        }
+        else
+        {
+            Terminal.WriteLine("Infiltrating the NSA...");
+        }
+        currentScreen = Screen.Password;
+        Terminal.WriteLine("Please enter your password:");
     }
 
     void ShowMainMenu ()
@@ -29,9 +61,13 @@ public class Hacker : MonoBehaviour {
         Terminal.WriteLine("HS C:\\Users\\" + name + ">");
     }
 
-    void OnUserInput (string input)
+    void RunMainMenu(string input)
     {
-        if (input == "1")
+        if (input == "menu")   // we can always go directly to main menu
+        {
+            ShowMainMenu();
+        }
+        else if (input == "1")
         {
             level = 1;
             StartGame();
@@ -45,10 +81,6 @@ public class Hacker : MonoBehaviour {
         {
             level = 3;
             StartGame();
-        }
-        else if (input == "menu")
-        {
-            ShowMainMenu();
         }
         else if (input == "tahiti")
         {
@@ -77,23 +109,5 @@ public class Hacker : MonoBehaviour {
         {
             Terminal.WriteLine("Please choose a valid command.");
         }
-    }
-
-    void StartGame()
-    {
-        if (level == 1)
-        {
-            Terminal.WriteLine("Infiltrating the Server County Library...");
-        }
-        else if (level == 2)
-        {
-            Terminal.WriteLine("Infiltrating Dells Largo Bank...");
-        }
-        else
-        {
-            Terminal.WriteLine("Infiltrating the NSA...");
-        }
-        currentScreen = Screen.Password;
-        Terminal.WriteLine("Please enter your password:");
     }
 }
