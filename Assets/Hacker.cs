@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Hacker : MonoBehaviour {
 
+    // Game state
+    int level;
     private string name;
 
     // Use this for initialization
@@ -28,15 +31,18 @@ public class Hacker : MonoBehaviour {
     {
         if (input == "1")
         {
-            Terminal.WriteLine("You chose Server County Library");
+            level = 1;
+            StartGame();
         }
         else if (input == "2")
         {
-            Terminal.WriteLine("You chose Dells Largo Bank");
+            level = 2;
+            StartGame();
         }
         else if (input == "3")
         {
-            Terminal.WriteLine("You chose the NSA");
+            level = 3;
+            StartGame();
         }
         else if (input == "menu")
         {
@@ -68,6 +74,22 @@ public class Hacker : MonoBehaviour {
         else
         {
             Terminal.WriteLine("Please choose a valid command.");
+        }
+    }
+
+    void StartGame()
+    {
+        if (level == 1)
+        {
+            Terminal.WriteLine("Infiltrating the Server County Library... ");
+        }
+        else if (level == 2)
+        {
+            Terminal.WriteLine("Infiltrating Dells Largo Bank...");
+        }
+        else
+        {
+            Terminal.WriteLine("Infiltrating the NSA...");
         }
     }
 }
