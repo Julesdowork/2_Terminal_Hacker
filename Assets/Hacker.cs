@@ -55,23 +55,10 @@ public class Hacker : MonoBehaviour {
 
     void RunMainMenu(string input)
     {
-        if (input == "menu")   // we can always go directly to main menu
+        bool isValidLevelNumber = (input == "1" || input == "2" || input == "3");
+        if (isValidLevelNumber)
         {
-            ShowMainMenu();
-        }
-        else if (input == "1")
-        {
-            level = 1;
-            StartGame();
-        }
-        else if (input == "2")
-        {
-            level = 2;
-            StartGame();
-        }
-        else if (input == "3")
-        {
-            level = 3;
+            level = int.Parse(input);
             StartGame();
         }
         else if (input == "tahiti")
@@ -105,22 +92,22 @@ public class Hacker : MonoBehaviour {
 
     void StartGame()
     {
-        if (level == 1)
-        {
-            Terminal.WriteLine("Infiltrating the Server County Library...");
-            password = level1Passwords[2];
-        }
-        else if (level == 2)
-        {
-            Terminal.WriteLine("Infiltrating Dells Largo Bank...");
-            password = level2Passwords[0];
-        }
-        else
-        {
-            Terminal.WriteLine("Infiltrating the NSA...");
-            password = level3Passwords[4];
-        }
         currentScreen = Screen.Password;
+        Terminal.ClearScreen();
+        switch (level)
+        {
+            case 1: Terminal.WriteLine("Infiltrating the Server County Library...");
+                password = level1Passwords[2];
+                break;
+            case 2: Terminal.WriteLine("Infiltrating Dells Largo Bank...");
+                password = level2Passwords[0];
+                break;
+            case 3: Terminal.WriteLine("Infiltrating the NSA...");
+                password = level3Passwords[4];
+                break;
+            default: Debug.LogError("Invalid level number");
+                break;
+        }
         Terminal.WriteLine("Please enter your password:");
     }
 
