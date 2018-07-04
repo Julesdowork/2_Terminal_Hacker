@@ -113,12 +113,64 @@ public class Hacker : MonoBehaviour {
     {
         if (input == password)
         {
-            Terminal.WriteLine("You got it!");
-            ShowMainMenu();
+            DisplayWinScreen();
         }
         else
         {
             Terminal.WriteLine("Sorry, that's wrong.");
+        }
+    }
+
+    void DisplayWinScreen()
+    {
+        currentScreen = Screen.Win;
+        Terminal.ClearScreen();
+        ShowLevelReward();
+    }
+
+    void ShowLevelReward()
+    {
+        switch (level)
+        {
+            case 1: Terminal.WriteLine("What overdue book? ;)");
+                Terminal.WriteLine(@"
+     _________
+    /       //
+   /       //
+  /______ //
+ (_______(/
+"
+                );
+                break;
+            case 2: Terminal.WriteLine("Take as much as you like! >:D");
+                Terminal.WriteLine(@"
+ ---------------------
+ | |=====   |======  |
+ | |     \  ||       |
+ | |      ) |=====   |
+ | |     /  ||       |
+ | |=====   ||       |
+ ---------------------
+"
+                );
+                break;
+            case 3: Terminal.WriteLine("Plunge into the deep state!! :O");
+                Terminal.WriteLine(@"
+         _
+   nnn  < \    nnn
+  |  /__/  \__/   |
+  |    =======    |
+  |    \     /    |
+   \    \___/    /
+    \  /|| ||\  /  ____
+	 \/ || || \/  (    )
+ ================(      )
+ ||  ||           (____)
+"
+                );
+                break;
+            default: Debug.LogError("Invalid level number");
+                break;
         }
     }
 }
