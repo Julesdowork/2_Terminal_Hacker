@@ -31,4 +31,5 @@ but lose points each time they guess incorrectly.
 ### Potential New Features / To-Do List
 + Achievement System?
 + Special Events/Holiday Levels
-[Link to game on itch.io]()
+
+[Link to game on itch.io](https://julesdowork.itch.io/terminal-hacker)
