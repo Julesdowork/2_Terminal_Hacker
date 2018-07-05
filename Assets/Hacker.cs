@@ -75,9 +75,9 @@ public class Hacker : MonoBehaviour {
         Terminal.ClearScreen();
         Terminal.WriteLine("Hello " + username + " (Score: " + score + ")");
         Terminal.WriteLine("Choose a target to hack into:\n");
-        Terminal.WriteLine("Press 1 for Server County Library");
-        Terminal.WriteLine("Press 2 for Dells Largo Bank");
-        Terminal.WriteLine("Press 3 for the NSA\n");
+        Terminal.WriteLine("1: Server County Library (Easy)");
+        Terminal.WriteLine("2: Dells Largo Bank (Medium)");
+        Terminal.WriteLine("3: NSA (Hard)\n");
         Terminal.WriteLine("HS C:\\Users\\" + username + ">");
     }
 
@@ -156,7 +156,7 @@ public class Hacker : MonoBehaviour {
                 Debug.LogError("Invalid level number");
                 break;
         }
-        Terminal.WriteLine("What's the password?\n");
+        Terminal.WriteLine("Please unscramble the password.\n");
         AskForPassword();
     }
 
@@ -180,9 +180,9 @@ public class Hacker : MonoBehaviour {
                 {
                     case 1: score -= 50;
                         break;
-                    case 2: score -= 150;
+                    case 2: score -= 100;
                         break;
-                    case 3: score -= 500;
+                    case 3: score -= 150;
                         break;
                 }
                 Terminal.ClearScreen();
